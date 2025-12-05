@@ -1413,7 +1413,7 @@ static inline unsigned char *buddy_tree_bits(struct buddy_tree *t);
 static void buddy_tree_populate_size_for_order(struct buddy_tree *t);
 static inline size_t buddy_tree_size_for_order(struct buddy_tree *t, uint8_t to);
 static void write_to_internal_position(struct buddy_tree* t, struct internal_position pos, size_t value);
-static size_t read_from_internal_position(unsigned char *bitset, struct internal_position pos);
+static inline size_t read_from_internal_position(unsigned char *bitset, struct internal_position pos);
 static inline unsigned char compare_with_internal_position(unsigned char *bitset, struct internal_position pos, size_t value);
 
 #ifdef BUDDY_EXPERIMENTAL_CHANGE_TRACKING
@@ -1689,7 +1689,7 @@ static void write_to_internal_position(struct buddy_tree* t, struct internal_pos
 #endif
 }
 
-static size_t read_from_internal_position(unsigned char *bitset, struct internal_position pos) {
+static inline size_t read_from_internal_position(unsigned char *bitset, struct internal_position pos) {
     if (! bitset_test(bitset, pos.bitset_location)) {
         return 0; /* Fast test without complete extraction */
     }
